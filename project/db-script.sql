@@ -39,22 +39,22 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 DROP TABLE IF EXISTS `package`;
 CREATE TABLE `package` (
-	`id` int(11) NOT NULL AUTO_INCREMENT,
-    `tracking_number` int(11) NOT NULL,
-    `status` varchar(45) DEFAULT NULL,
-    `height` int(11),
-    `width` int(11),
-    `depth` int(11),
-    `weight`int(11),
-    `date_of_entry` DATE,
-    `date_of_delivery` DATE,
-    PRIMARY KEY (`id`)
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `tracking_number` int(11) NOT NULL,
+  `status` varchar(45) DEFAULT NULL,
+  `height` int(11),
+  `width` int(11),
+  `depth` int(11),
+  `weight`int(11),
+  `date_of_entry` DATE,
+  `date_of_delivery` DATE,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `equipment`;
 CREATE TABLE `equipment` (
-	`id` int(11) NOT NULL AUTO_INCREMENT,
-    `type` varchar(45) DEFAULT NULL,
-    `amount` int(11),
-    PRIMARY KEY (`id`)
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(45) DEFAULT NULL,
+  `amount` int(11),
+  PRIMARY KEY (`id`)
 )
