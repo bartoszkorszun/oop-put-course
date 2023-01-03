@@ -26,6 +26,7 @@ public class Employee implements EmployeeInterface {
 	
 	@Column(name = "last_name")
 	private String lastName;
+	
 	// CREATE DATE FIELD
 	
 	@Column(name = "login")
@@ -34,6 +35,9 @@ public class Employee implements EmployeeInterface {
 	@Column(name = "password")
 	private String password;
 	
+	@Column(name = "position")
+	private String position;
+	
 	@Column(name = "is_admin")
 	private int isAdmin = 0;
 	
@@ -41,16 +45,22 @@ public class Employee implements EmployeeInterface {
 	@JoinColumn(name = "working_hours_id")
 	private WorkingHours workingHours;
 	
+	public Employee() {
+		
+	}
+	
 	public Employee(String firstName, 
 					String lastName, 
 					String login, 
-					String password, 
+					String password,
+					String position,
 					int isAdmin) {
 		
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.login = login;
 		this.password = password;
+		this.position = position;
 		this.isAdmin = isAdmin;
 	}
 

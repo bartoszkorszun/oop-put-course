@@ -7,6 +7,10 @@
 		<title>eStorageMS</title>
 	</head>
 	<body>
+	
 		<h2>Workers</h2>
+		
+		<input type="button" value="Add worker" onclick="window.location.href='http://localhost:8080/eStorage-Management-System/workers/addNewWorker'">
+		
 	</body>
 </html>
