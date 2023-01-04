@@ -1,5 +1,7 @@
 package estorage.main.entity;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,7 +29,8 @@ public class Employee implements EmployeeInterface {
 	@Column(name = "last_name")
 	private String lastName;
 	
-	// CREATE DATE FIELD
+	@Column(name = "date_of_birth")
+	private Date date;
 	
 	@Column(name = "login")
 	private String login;
@@ -39,7 +42,7 @@ public class Employee implements EmployeeInterface {
 	private String position;
 	
 	@Column(name = "is_admin")
-	private int isAdmin = 0;
+	private boolean isAdmin;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "working_hours_id")
@@ -51,13 +54,15 @@ public class Employee implements EmployeeInterface {
 	
 	public Employee(String firstName, 
 					String lastName, 
+					Date date,
 					String login, 
 					String password,
 					String position,
-					int isAdmin) {
+					boolean isAdmin) {
 		
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.date = date;
 		this.login = login;
 		this.password = password;
 		this.position = position;
@@ -68,5 +73,11 @@ public class Employee implements EmployeeInterface {
 	public void fillWorkingHours() {
 		
 		
+	}
+
+	@Override
+	public String toString() {
+		return "Employee [firstName=" + firstName + ", lastName=" + lastName + ", date=" + date + ", login=" + login
+				+ ", password=" + password + ", position=" + position + ", isAdmin=" + isAdmin + "]";
 	}
 }
