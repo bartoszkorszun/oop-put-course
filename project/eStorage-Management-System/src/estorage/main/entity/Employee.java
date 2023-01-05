@@ -42,11 +42,13 @@ public class Employee implements EmployeeInterface {
 	private String position;
 	
 	@Column(name = "is_admin")
-	private boolean isAdmin;
+	private String isAdmin;
 	
+	/*
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "working_hours_id")
 	private WorkingHours workingHours;
+	*/
 	
 	public Employee() {
 		
@@ -58,7 +60,7 @@ public class Employee implements EmployeeInterface {
 					String login, 
 					String password,
 					String position,
-					boolean isAdmin) {
+					String isAdmin) {
 		
 		this.firstName = firstName;
 		this.lastName = lastName;
