@@ -28,7 +28,7 @@ CREATE TABLE `employee` (
   `login` varchar(45) DEFAULT NULL,
   `password` varchar(45) DEFAULT NULL,
   `position` varchar(45) DEFAULT NULL,
-  `is_admin` int(1) DEFAULT 0,
+  `is_admin` varchar(45) DEFAULT NULL,
   `working_hours_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `F_Key_idx` (`working_hours_id`),
