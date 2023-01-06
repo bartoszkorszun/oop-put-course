@@ -74,7 +74,6 @@ public class Employee implements EmployeeInterface {
 	@Override
 	public void fillWorkingHours() {
 		
-		
 	}
 
 	@Override
