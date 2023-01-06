@@ -8,9 +8,17 @@
 	</head>
 	<body>
 		
-		<h2>Equipment</h2>
+		<h2>Add new equipment</h2>
 		
-		<input type="button" value="New Equipment" onclick="window.location.href='http://localhost:8080/eStorage-Management-System/equipment/newEquipment'">
+		<form action="summary">
+		
+			Type: <input type="text" name="type">
+			<br><br>
+			Amount: <input type="number" name="amount"> 
+			<br><br>
+			<input type="submit" value="Submit">
+		
+		</form>
 		
 	</body>
 </html>
