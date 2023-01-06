@@ -18,8 +18,8 @@ public class Package {
 	@Column(name = "id")
 	private int id;
 	
-	@Column(name = "tracking_nmumber")
-	private int tracking_number;
+	@Column(name = "tracking_number")
+	private int trackingNumber;
 	
 	@Column(name = "status")
 	private String status;
@@ -42,7 +42,7 @@ public class Package {
 	@Column(name = "date_of_delivery")
 	private Date dateOfDelivery;
 
-	public Package(int tracking_number, 
+	public Package(int trackingNumber, 
 					String status, 
 					int height, 
 					int width, 
@@ -51,7 +51,7 @@ public class Package {
 					Date dateOfEntry,
 					Date dateOfDelivery) {
 		
-		this.tracking_number = tracking_number;
+		this.trackingNumber = trackingNumber;
 		this.status = status;
 		this.height = height;
 		this.width = width;
@@ -59,5 +59,12 @@ public class Package {
 		this.weight = weight;
 		this.dateOfEntry = dateOfEntry;
 		this.dateOfDelivery = dateOfDelivery;
+	}
+
+	@Override
+	public String toString() {
+		return "Package [trackingNumber=" + trackingNumber + ", status=" + status + ", height=" + height + ", width="
+				+ width + ", depth=" + depth + ", weight=" + weight + ", dateOfEntry=" + dateOfEntry
+				+ ", dateOfDelivery=" + dateOfDelivery + "]";
 	}
 }
