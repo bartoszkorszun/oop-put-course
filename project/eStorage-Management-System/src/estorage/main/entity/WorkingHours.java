@@ -30,6 +30,10 @@ public class WorkingHours {
 	@Column(name = "sum")
 	private int sum;
 
+	public WorkingHours() {
+		
+	}
+	
 	public WorkingHours(Date date, 
 			Date startingHour, 
 			Date finishingHour, 

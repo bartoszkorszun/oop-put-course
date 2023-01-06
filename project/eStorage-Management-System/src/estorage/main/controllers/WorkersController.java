@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import estorage.main.entity.Employee;
+import estorage.main.entity.WorkingHours;
 
 @Controller
 @RequestMapping("/workers")
@@ -77,12 +78,15 @@ public class WorkersController extends HttpServlet{
 		SessionFactory sFactory = new Configuration()
 				.configure("hibernate.cfg.xml")
 				.addAnnotatedClass(Employee.class)
+				.addAnnotatedClass(WorkingHours.class)
 				.buildSessionFactory();
 		
 		Session session = sFactory.getCurrentSession();
 		
 		try {
 		
+			employee.addWorkingHours(new WorkingHours());
+			
 			session.beginTransaction();
 			session.save(employee);
 			session.getTransaction().commit();

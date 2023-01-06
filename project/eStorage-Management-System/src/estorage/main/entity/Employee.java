@@ -44,11 +44,9 @@ public class Employee implements EmployeeInterface {
 	@Column(name = "is_admin")
 	private String isAdmin;
 	
-	/*
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "working_hours_id")
 	private WorkingHours workingHours;
-	*/
 	
 	public Employee() {
 		
@@ -72,7 +70,7 @@ public class Employee implements EmployeeInterface {
 	}
 
 	@Override
-	public void fillWorkingHours() {
-		
+	public void addWorkingHours(WorkingHours workingHours) {
+		this.workingHours = workingHours;
 	}
 }
