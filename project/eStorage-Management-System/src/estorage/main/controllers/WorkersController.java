@@ -48,7 +48,12 @@ public class WorkersController extends HttpServlet{
 		
 		doPost(request, response);
 		
-		model.addAttribute("employee", employee.toString());
+		model.addAttribute("firstName", employee.firstName);
+		model.addAttribute("lastName", employee.lastName);
+		model.addAttribute("position", employee.position);
+		
+		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		model.addAttribute("birthDate", formatter.format(employee.date));
 		
 		return "employee-profile";
 	}

@@ -10,8 +10,19 @@
 		
 		<h2>Employee's profile</h2>
 		
-		Employee; ${ employee }
+		Employee:
+		<br><br>
+		Full Name:
+		${ firstName }
+		${ lastName }
+		<br><br>
+		Birth Date:
+		${ birthDate }
+		<br><br>
+		Position:
+		${ position }
 		
+		<br><br>
 		<form action="main">
 			<input type="submit" value="Confirm">
 		</form>
