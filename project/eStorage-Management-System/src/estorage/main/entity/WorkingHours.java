@@ -31,9 +31,9 @@ public class WorkingHours {
 	private int sum;
 
 	public WorkingHours(Date date, 
-						Date startingHour, 
-						Date finishingHour, 
-						int sum) {
+			Date startingHour, 
+			Date finishingHour, 
+			int sum) {
 		
 		this.date = date;
 		this.startingHour = startingHour;

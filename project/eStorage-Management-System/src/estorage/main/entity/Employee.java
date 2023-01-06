@@ -55,12 +55,12 @@ public class Employee implements EmployeeInterface {
 	}
 	
 	public Employee(String firstName, 
-					String lastName, 
-					Date date,
-					String login, 
-					String password,
-					String position,
-					String isAdmin) {
+			String lastName, 
+			Date date,
+			String login, 
+			String password,
+			String position,
+			String isAdmin) {
 		
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -74,11 +74,5 @@ public class Employee implements EmployeeInterface {
 	@Override
 	public void fillWorkingHours() {
 		
-	}
-
-	@Override
-	public String toString() {
-		return "Employee [firstName=" + firstName + ", lastName=" + lastName + ", date=" + date + ", login=" + login
-				+ ", password=" + password + ", position=" + position + ", isAdmin=" + isAdmin + "]";
 	}
 }

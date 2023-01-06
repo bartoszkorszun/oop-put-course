@@ -35,9 +35,9 @@ public class EquipmentController extends HttpServlet{
 	
 	@RequestMapping("/summary")
 	protected void doPost(HttpServletRequest request,
-							HttpServletResponse response) 
-									throws ServletException, 
-											IOException {
+			HttpServletResponse response) 
+					throws ServletException, 
+					IOException {
 		
 		String type = request.getParameter("type");
 		int amount = Integer.parseInt(request.getParameter("amount"));
@@ -50,9 +50,9 @@ public class EquipmentController extends HttpServlet{
 	private void createEquipment() {
 		
 		SessionFactory sFactory = new Configuration()
-									.configure("hibernate.cfg.xml")
-									.addAnnotatedClass(Equipment.class)
-									.buildSessionFactory();
+				.configure("hibernate.cfg.xml")
+				.addAnnotatedClass(Equipment.class)
+				.buildSessionFactory();
 		
 		Session session = sFactory.getCurrentSession();
 		

@@ -39,9 +39,9 @@ public class WorkersController extends HttpServlet{
 	
 	@RequestMapping("/employeeProfile")
 	protected void doPost(HttpServletRequest request,
-							HttpServletResponse response) 
-									throws ServletException, 
-											IOException {
+			HttpServletResponse response) 
+					throws ServletException, 
+					IOException {
 		
 		String firstName = request.getParameter("firstName");
 		String lastName = request.getParameter("lastName");
@@ -75,9 +75,9 @@ public class WorkersController extends HttpServlet{
 	private void createEmployee() {
 		
 		SessionFactory sFactory = new Configuration()
-									.configure("hibernate.cfg.xml")
-									.addAnnotatedClass(Employee.class)
-									.buildSessionFactory();
+				.configure("hibernate.cfg.xml")
+				.addAnnotatedClass(Employee.class)
+				.buildSessionFactory();
 		
 		Session session = sFactory.getCurrentSession();
 		

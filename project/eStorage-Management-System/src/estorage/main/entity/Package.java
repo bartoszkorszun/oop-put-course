@@ -43,13 +43,13 @@ public class Package {
 	private Date dateOfDelivery;
 
 	public Package(int trackingNumber, 
-					String status, 
-					int height, 
-					int width, 
-					int depth, 
-					int weight, 
-					Date dateOfEntry,
-					Date dateOfDelivery) {
+			String status, 
+			int height, 
+			int width, 
+			int depth, 
+			int weight, 
+			Date dateOfEntry,
+			Date dateOfDelivery) {
 		
 		this.trackingNumber = trackingNumber;
 		this.status = status;
@@ -59,12 +59,5 @@ public class Package {
 		this.weight = weight;
 		this.dateOfEntry = dateOfEntry;
 		this.dateOfDelivery = dateOfDelivery;
-	}
-
-	@Override
-	public String toString() {
-		return "Package [trackingNumber=" + trackingNumber + ", status=" + status + ", height=" + height + ", width="
-				+ width + ", depth=" + depth + ", weight=" + weight + ", dateOfEntry=" + dateOfEntry
-				+ ", dateOfDelivery=" + dateOfDelivery + "]";
 	}
 }

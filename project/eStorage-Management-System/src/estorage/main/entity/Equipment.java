@@ -23,7 +23,7 @@ public class Equipment {
 	private int amount;
 
 	public Equipment(String type, 
-						int amount) {
+			int amount) {
 		
 		this.type = type;
 		this.amount = amount;

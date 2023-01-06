@@ -39,8 +39,9 @@ public class PackagesController extends HttpServlet {
 	
 	@RequestMapping("/summary")
 	protected void doPost(HttpServletRequest request,
-							HttpServletResponse response)
-								throws ServletException, IOException{
+			HttpServletResponse response)
+			throws ServletException, 
+			IOException{
 		
 		int trackingNumber = Integer.parseInt(request.getParameter("trackingNumber"));
 		String status = request.getParameter("status");
@@ -70,9 +71,9 @@ public class PackagesController extends HttpServlet {
 	private void createPackage() {
 		
 		SessionFactory sFactory = new Configuration()
-									.configure("hibernate.cfg.xml")
-									.addAnnotatedClass(Package.class)
-									.buildSessionFactory();
+				.configure("hibernate.cfg.xml")
+				.addAnnotatedClass(Package.class)
+				.buildSessionFactory();
 		
 		Session session = sFactory.getCurrentSession();
 		
