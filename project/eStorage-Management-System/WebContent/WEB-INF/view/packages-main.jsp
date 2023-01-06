@@ -7,6 +7,10 @@
 		<title>eStorageMS</title>
 	</head>
 	<body>
+	
 		<h2>Packages</h2>
+		
+		<input type="button" value="New Package" onclick="window.location.href='http://localhost:8080/eStorage-Management-System/packages/entryPackage'">
+	
 	</body>
 </html>
