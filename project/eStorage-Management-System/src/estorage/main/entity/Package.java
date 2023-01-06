@@ -1,5 +1,7 @@
 package estorage.main.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,6 +36,28 @@ public class Package {
 	@Column(name = "weight")
 	private int weight;
 	
-	// CREATEE FIELD FOR ENTRY DATE
-	// CREATEE FIELD FOR DELIVERY DATE
+	@Column(name = "date_of_entry")
+	private Date dateOfEntry;
+	
+	@Column(name = "date_of_delivery")
+	private Date dateOfDelivery;
+
+	public Package(int tracking_number, 
+					String status, 
+					int height, 
+					int width, 
+					int depth, 
+					int weight, 
+					Date dateOfEntry,
+					Date dateOfDelivery) {
+		
+		this.tracking_number = tracking_number;
+		this.status = status;
+		this.height = height;
+		this.width = width;
+		this.depth = depth;
+		this.weight = weight;
+		this.dateOfEntry = dateOfEntry;
+		this.dateOfDelivery = dateOfDelivery;
+	}
 }

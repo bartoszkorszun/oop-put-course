@@ -1,5 +1,7 @@
 package estorage.main.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,10 +18,26 @@ public class WorkingHours {
 	@Column(name = "id")
 	private int id;
 	
-	// CREATE DATE FIELD
-	// CREATE STARTING HOUR FIELD
-	// CREATE FINNISHING HOUR FIELD
+	@Column(name = "date")
+	private Date date;
+	
+	@Column(name = "starting_hour")
+	private Date startingHour;
+	
+	@Column(name = "finishing_hour")
+	private Date finishingHour;
 	
 	@Column(name = "sum")
 	private int sum;
+
+	public WorkingHours(Date date, 
+						Date startingHour, 
+						Date finishingHour, 
+						int sum) {
+		
+		this.date = date;
+		this.startingHour = startingHour;
+		this.finishingHour = finishingHour;
+		this.sum = sum;
+	}
 }

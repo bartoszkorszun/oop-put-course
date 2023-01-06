@@ -21,4 +21,11 @@ public class Equipment {
 	
 	@Column(name = "amount")
 	private int amount;
+
+	public Equipment(String type, 
+						int amount) {
+		
+		this.type = type;
+		this.amount = amount;
+	}
 }
