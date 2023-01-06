@@ -1,5 +1,7 @@
 package estorage.main.entity;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -72,5 +74,19 @@ public class Employee implements EmployeeInterface {
 	@Override
 	public void addWorkingHours(WorkingHours workingHours) {
 		this.workingHours = workingHours;
+	}
+
+	@Override
+	public String toString() {
+		
+		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		String sDate;
+		
+		sDate = formatter.format(date);
+		
+		return "First Name: " + firstName 
+				+ "\nLast Name: " + lastName 
+				+ "\nDate of birth: " + sDate 
+				+ "\nPosition: " + position;
 	}
 }

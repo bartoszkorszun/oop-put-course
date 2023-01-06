@@ -15,6 +15,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import estorage.main.entity.Employee;
@@ -25,7 +26,9 @@ import estorage.main.entity.WorkingHours;
 public class WorkersController extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
-
+	
+	private Employee employee;
+	
 	@RequestMapping("/main")
 	public String showMainPage() {
 		return "workers-main";
@@ -36,21 +39,32 @@ public class WorkersController extends HttpServlet{
 		return "new-worker";
 	}
 	
-	private Employee employee;
-	
 	@RequestMapping("/employeeProfile")
+	private String employeeProfile(Model model,
+			HttpServletRequest request,
+			HttpServletResponse response) 
+					throws ServletException,
+					IOException {
+		
+		doPost(request, response);
+		
+		model.addAttribute("employee", employee.toString());
+		
+		return "employee-profile";
+	}
+	
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) 
 					throws ServletException, 
 					IOException {
-		
+
 		String firstName = request.getParameter("firstName");
 		String lastName = request.getParameter("lastName");
 		String sDate = request.getParameter("birthDate");
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");
 		String position = request.getParameter("position");
-		boolean admin = (request.getParameter("admin") != null); // Zwraca on albo null, najlepiej jakby udało się przekonwertować na boolean
+		boolean admin = (request.getParameter("admin") != null); 
 		
 		String isAdmin;
 		
