@@ -13,6 +13,7 @@ public class TestJDBC {
 		
 		try {
 			
+			@SuppressWarnings("unused")
 			Connection connection = DriverManager.getConnection(jdbcUrl, user, pass);
 			System.out.println("connection successfull");
 			
