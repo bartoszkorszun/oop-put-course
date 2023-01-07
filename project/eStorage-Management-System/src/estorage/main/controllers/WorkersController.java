@@ -1,10 +1,17 @@
 package estorage.main.controllers;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -114,4 +122,41 @@ public class WorkersController extends HttpServlet{
 			sFactory.close();
 		}
 	}
+	
+	public List<String> employees;
+
+	@Autowired
+	public void viewList() throws SQLException {
+		
+		employees = new ArrayList<>();
+		
+		Connection connection = null;
+		Statement statement = null;
+		
+		try {
+			
+			Class.forName("com.mysql.jdbc.Driver").getDeclaredConstructor().newInstance();
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/oop-put-courier-warehouse?useSSL=false",
+					"warehousedb",
+					"warehousedb");
+			
+			statement = connection.createStatement();
+			
+			ResultSet rs = statement.executeQuery("select * from employee");
+			
+			while(rs.next()) {
+				String item = rs.getString("first_name")
+						+ ' ' + rs.getString("last_name")
+						+ ' ' + rs.getDate("date_of_birth")
+						+ ' ' + rs.getString("position");
+				
+				employees.add(item);
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public WorkersController() {}
 }
