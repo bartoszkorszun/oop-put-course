@@ -127,7 +127,6 @@ public class WorkersController extends HttpServlet{
 	public List<String> employeesDates;
 	public List<String> employeesPositions;
 
-	@Autowired
 	public void viewList() throws SQLException {
 		
 		employeesNames = new ArrayList<>();
