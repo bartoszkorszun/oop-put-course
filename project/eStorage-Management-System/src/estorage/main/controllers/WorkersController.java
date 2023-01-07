@@ -35,8 +35,6 @@ public class WorkersController extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private Employee employee;
-	
 	@RequestMapping("/main")
 	public String showMainPage() {
 		return "workers-main";
@@ -46,6 +44,8 @@ public class WorkersController extends HttpServlet{
 	public String addNewWorker() {
 		return "new-worker";
 	}
+	
+	private Employee employee;
 	
 	@RequestMapping("/employeeProfile")
 	private String employeeProfile(Model model,
