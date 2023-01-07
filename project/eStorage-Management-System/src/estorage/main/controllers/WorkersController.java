@@ -123,12 +123,16 @@ public class WorkersController extends HttpServlet{
 		}
 	}
 	
-	public List<String> employees;
+	public List<String> employeesNames;
+	public List<String> employeesDates;
+	public List<String> employeesPositions;
 
 	@Autowired
 	public void viewList() throws SQLException {
 		
-		employees = new ArrayList<>();
+		employeesNames = new ArrayList<>();
+		employeesDates = new ArrayList<>();
+		employeesPositions = new ArrayList<>();
 		
 		Connection connection = null;
 		Statement statement = null;
@@ -144,13 +148,17 @@ public class WorkersController extends HttpServlet{
 			
 			ResultSet rs = statement.executeQuery("select * from employee");
 			
+			DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+			
 			while(rs.next()) {
-				String item = rs.getString("first_name")
-						+ ' ' + rs.getString("last_name")
-						+ ' ' + rs.getDate("date_of_birth")
-						+ ' ' + rs.getString("position");
+				String names = rs.getString("first_name")
+						+ ' ' + rs.getString("last_name");
+				String dates = formatter.format(rs.getDate("date_of_birth"));
+				String positions = rs.getString("position");
 				
-				employees.add(item);
+				employeesNames.add(names);
+				employeesDates.add(dates);
+				employeesPositions.add(positions);
 			}
 			
 		} catch(Exception e) {

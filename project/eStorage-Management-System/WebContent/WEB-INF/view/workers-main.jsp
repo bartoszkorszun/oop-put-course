@@ -15,12 +15,29 @@
 		<br><br>
 		
 		<% 
-		estorage.main.controllers.WorkersController wc = new WorkersController();
-		wc.viewList();
-		java.util.List<String> lst = wc.employees;
-		for (int i=lst.size()-1; i>=0; i--)
-			out.println(lst.get(i) + "<br>");
+		estorage.main.controllers.WorkersController wController = new WorkersController();
+		wController.viewList();
+		java.util.List<String> nLst = wController.employeesNames;
+		java.util.List<String> dLst = wController.employeesDates;
+		java.util.List<String> pLst = wController.employeesPositions;
 		%>
-		
+		<%
+		for (int i=nLst.size()-1; i>=0; i--){
+			out.println("<table border=\"1\">");
+			if(i==nLst.size()-1){
+				out.println("<tr><th style=\"width: 200px\">Full name</th><th style=\"width: 100px\">Birth date</th><th style=\"width: 100px\">Position</th></tr>");
+				out.println("<tr><td style=\"width: 200px\">" + nLst.get(i) 
+				+ "</td><td style=\"width: 100px\">" + dLst.get(i)
+				+ "</td><td style=\"width: 100px\"" + pLst.get(i)
+				+ "</td></tr>");
+			}else{
+				out.println("<tr><td style=\"width: 200px\">" + nLst.get(i) 
+				+ "</td><td style=\"width: 100px\">" + dLst.get(i)
+				+ "</td><td style=\"width: 100px\">" + pLst.get(i)
+				+ "</td></tr>");
+			}
+			out.println("</table>");
+		}
+		%>
 	</body>
 </html>
