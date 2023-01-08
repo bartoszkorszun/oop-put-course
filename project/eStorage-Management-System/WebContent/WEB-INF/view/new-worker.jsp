@@ -17,13 +17,7 @@
 			<br><br>
 			Birth date: <input type="date" name="birthDate">
 			<br><br>
-			Login: <input type="text" name="login">
-			<br><br>
-			Password: <input type="text" name="password">
-			<br><br>
 			Position <input type="text" name="position">
-			<br><br>
-			Admin <input type="checkbox" name="admin">
 			<br><br>
 			<input type="submit" value="Submit">
 		

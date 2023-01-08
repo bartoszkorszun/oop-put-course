@@ -32,17 +32,8 @@ public class Employee implements EmployeeInterface {
 	@Column(name = "date_of_birth")
 	public Date date;
 	
-	@Column(name = "login")
-	private String login;
-	
-	@Column(name = "password")
-	private String password;
-	
 	@Column(name = "position")
 	public String position;
-	
-	@Column(name = "is_admin")
-	private String isAdmin;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "working_hours_id")
@@ -55,18 +46,12 @@ public class Employee implements EmployeeInterface {
 	public Employee(String firstName, 
 			String lastName, 
 			Date date,
-			String login, 
-			String password,
-			String position,
-			String isAdmin) {
+			String position) {
 		
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.date = date;
-		this.login = login;
-		this.password = password;
 		this.position = position;
-		this.isAdmin = isAdmin;
 	}
 
 	@Override

@@ -73,17 +73,7 @@ public class WorkersController extends HttpServlet{
 		String firstName = request.getParameter("firstName");
 		String lastName = request.getParameter("lastName");
 		String sDate = request.getParameter("birthDate");
-		String login = request.getParameter("login");
-		String password = request.getParameter("password");
 		String position = request.getParameter("position");
-		boolean admin = (request.getParameter("admin") != null); 
-		
-		String isAdmin;
-		
-		if(admin)
-			isAdmin = "true";
-		else
-			isAdmin = "false";
 		
 		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
@@ -94,7 +84,7 @@ public class WorkersController extends HttpServlet{
 			e.printStackTrace();
 		}
 		
-		employee = new Employee(firstName, lastName, date, login, password, position, isAdmin);
+		employee = new Employee(firstName, lastName, date, position);
 		 
 		createEmployee();
 	}

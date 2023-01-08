@@ -30,7 +30,7 @@
 				out.println("<tr><th style=\"width: 200px\">Full name</th><th style=\"width: 100px\">Birth date</th><th style=\"width: 100px\">Position</th></tr>");
 				out.println("<tr><td style=\"width: 200px\">" + nLst.get(i) 
 				+ "</td><td style=\"width: 100px\">" + dLst.get(i)
-				+ "</td><td style=\"width: 100px\"" + pLst.get(i)
+				+ "</td><td style=\"width: 100px\">" + pLst.get(i)
 				+ "</td></tr>");
 			}else{
 				out.println("<tr><td style=\"width: 200px\">" + nLst.get(i) 
