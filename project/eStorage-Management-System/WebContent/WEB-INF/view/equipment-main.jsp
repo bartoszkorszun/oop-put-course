@@ -13,6 +13,8 @@
 		
 		<input type="button" value="New Equipment" onclick="window.location.href='http://localhost:8080/eStorage-Management-System/equipment/newEquipment'">
 		<br><br>
+		<input type="button" value="Main Page" onclick="window.location.href='http://localhost:8080/eStorage-Management-System/'">
+		<br><br>
 		
 		<% 
 		estorage.main.controllers.EquipmentController eController = new EquipmentController();

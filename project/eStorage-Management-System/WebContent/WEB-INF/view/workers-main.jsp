@@ -13,6 +13,8 @@
 		
 		<input type="button" value="Add worker" onclick="window.location.href='http://localhost:8080/eStorage-Management-System/workers/addNewWorker'">
 		<br><br>
+		<input type="button" value="Main Page" onclick="window.location.href='http://localhost:8080/eStorage-Management-System/'">
+		<br><br>
 		
 		<% 
 		estorage.main.controllers.WorkersController wController = new WorkersController();
