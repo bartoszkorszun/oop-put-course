@@ -19,28 +19,28 @@ public class Package {
 	private int id;
 	
 	@Column(name = "tracking_number")
-	private int trackingNumber;
+	public int trackingNumber;
 	
 	@Column(name = "status")
-	private String status;
+	public String status;
 	
 	@Column(name = "height")
-	private int height;
+	public int height;
 	
 	@Column(name = "width")
-	private int width;
+	public int width;
 	
 	@Column(name = "depth")
-	private int depth;
+	public int depth;
 	
 	@Column(name = "weight")
-	private int weight;
+	public int weight;
 	
 	@Column(name = "date_of_entry")
-	private Date dateOfEntry;
+	public Date dateOfEntry;
 	
 	@Column(name = "date_of_delivery")
-	private Date dateOfDelivery;
+	public Date dateOfDelivery;
 
 	public Package(int trackingNumber, 
 			String status, 

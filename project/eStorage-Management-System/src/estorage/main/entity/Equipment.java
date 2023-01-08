@@ -17,10 +17,10 @@ public class Equipment {
 	private int id;
 	
 	@Column(name = "type")
-	private String type;
+	public String type;
 	
 	@Column(name = "amount")
-	private int amount;
+	public int amount;
 
 	public Equipment(String type, 
 			int amount) {

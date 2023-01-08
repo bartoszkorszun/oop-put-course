@@ -1,10 +1,17 @@
 package estorage.main.controllers;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +22,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import estorage.main.entity.Package;
@@ -38,6 +46,29 @@ public class PackagesController extends HttpServlet {
 	Package newPackage;
 	
 	@RequestMapping("/summary")
+	private String sumary(Model model,
+			HttpServletRequest request,
+			HttpServletResponse response) 
+					throws ServletException,
+					IOException {
+		
+		doPost(request, response);
+		
+		model.addAttribute("trackingNumber", newPackage.trackingNumber);
+		model.addAttribute("status", newPackage.status);
+		model.addAttribute("height", newPackage.height);
+		model.addAttribute("width", newPackage.width);
+		model.addAttribute("depth", newPackage.depth);
+		model.addAttribute("weight", newPackage.weight);
+		
+		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		model.addAttribute("entryDate", formatter.format(newPackage.dateOfEntry));
+		model.addAttribute("deliveryDate", formatter.format(newPackage.dateOfDelivery));
+		
+		//TODO view
+		return null;
+	}
+	
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response)
 			throws ServletException, 
@@ -87,4 +118,67 @@ public class PackagesController extends HttpServlet {
 			sFactory.close();
 		}
 	}
+	
+	public List<String> trackingNumbers;
+	public List<String> statuses;
+	public List<String> heights;
+	public List<String> widths;
+	public List<String> depths;
+	public List<String> weights;
+	public List<String> datesOfEntry;
+	public List<String> datesOfDelivery;
+	
+	public void viewList() throws SQLException {
+		
+		trackingNumbers = new ArrayList<>();
+		statuses = new ArrayList<>();
+		heights = new ArrayList<>();
+		widths = new ArrayList<>();
+		depths = new ArrayList<>();
+		weights = new ArrayList<>();
+		datesOfEntry = new ArrayList<>();
+		datesOfDelivery = new ArrayList<>();
+		
+		Connection connection = null;
+		Statement statement = null;
+		
+		try {
+			
+			Class.forName("com.mysql.jdbc.Driver").getDeclaredConstructor().newInstance();
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/oop-put-courier-warehouse?useSSL=false",
+					"warehousedb",
+					"warehousedb");
+			
+			statement = connection.createStatement();
+			
+			ResultSet rs = statement.executeQuery("select * from package");
+			
+			DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+			
+			while(rs.next()) {
+				String trackingNumber = rs.getString("tracking_number");
+				String status = rs.getString("status");
+				String height = rs.getString("height");
+				String width = rs.getString("width");
+				String depth = rs.getString("depth");
+				String weight = rs.getString("weight");
+				String dateOfEntry = formatter.format(rs.getDate("date_of_entry"));
+				String dateOfDelivery = formatter.format(rs.getDate("date_of_delivery"));
+			
+				trackingNumbers.add(trackingNumber);
+				statuses.add(status);
+				heights.add(height);
+				widths.add(width);
+				depths.add(depth);
+				weights.add(weight);
+				datesOfEntry.add(dateOfEntry);
+				datesOfDelivery.add(dateOfDelivery);
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public PackagesController() {}
 }

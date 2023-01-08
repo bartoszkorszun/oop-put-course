@@ -1,6 +1,13 @@
 package estorage.main.controllers;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +18,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import estorage.main.entity.Equipment;
@@ -34,6 +42,21 @@ public class EquipmentController extends HttpServlet{
 	Equipment equipment;
 	
 	@RequestMapping("/summary")
+	private String summary(Model model,
+			HttpServletRequest request,
+			HttpServletResponse response) 
+					throws ServletException,
+					IOException {
+		
+		doPost(request, response);
+		
+		model.addAttribute("type", equipment.type);
+		model.addAttribute("amount", equipment.amount);
+		
+		// TODO view
+		return null;
+	}
+	
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) 
 					throws ServletException, 
@@ -66,4 +89,41 @@ public class EquipmentController extends HttpServlet{
 			sFactory.close();
 		}
 	}
+	
+	public List<String> types;
+	public List<String> amount;
+	
+	public void viewList() throws SQLException {
+		
+		types = new ArrayList<>();
+		amount = new ArrayList<>();
+		
+		Connection connection = null;
+		Statement statement = null;
+		
+		try {
+			
+			Class.forName("com.mysql.jdbc.Driver").getDeclaredConstructor().newInstance();
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/oop-put-courier-warehouse?useSSL=false",
+					"warehousedb",
+					"warehousedb");
+			
+			statement = connection.createStatement();
+			
+			ResultSet rs = statement.executeQuery("select * from equipment");
+			
+			while(rs.next()) {
+				String sTypes = rs.getString("type");
+				String sAmount = rs.getString("amount");
+				
+				types.add(sTypes);
+				amount.add(sAmount);
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public EquipmentController() {}
 }
