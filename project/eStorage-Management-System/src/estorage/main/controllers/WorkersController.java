@@ -23,6 +23,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import estorage.main.entity.Employee;
@@ -115,12 +116,14 @@ public class WorkersController extends HttpServlet{
 	public List<String> employeesNames;
 	public List<String> employeesDates;
 	public List<String> employeesPositions;
+	public List<String> employeesWorkingHours;
 
 	public void viewList() throws SQLException {
 		
 		employeesNames = new ArrayList<>();
 		employeesDates = new ArrayList<>();
 		employeesPositions = new ArrayList<>();
+		employeesWorkingHours = new ArrayList<>();
 		
 		Connection connection = null;
 		Statement statement = null;
@@ -143,15 +146,51 @@ public class WorkersController extends HttpServlet{
 						+ ' ' + rs.getString("last_name");
 				String dates = formatter.format(rs.getDate("date_of_birth"));
 				String positions = rs.getString("position");
+				String workinghours = rs.getString("working_hours_id");
 				
 				employeesNames.add(names);
 				employeesDates.add(dates);
 				employeesPositions.add(positions);
+				employeesWorkingHours.add(workinghours);
 			}
 			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private int whid;
+	
+	@RequestMapping("/workingHours/{whid}")
+	public String workingHours(@PathVariable int whid) {
+		this.whid = whid;
+		return "working-hours";
+	}
+	
+	@RequestMapping("/submitHours")
+	public String submitHours(HttpServletRequest request,
+			HttpServletResponse response)
+					throws ServletException, 
+					IOException{
+		
+		String date = request.getParameter("date");
+		String startingHour = request.getParameter("startingHour");
+		String finishingHour = request.getParameter("finishingHour");
+		
+		// tu ma być time
+		
+		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		Date date1 = new Date();
+		Date date2 = new Date();
+		
+		try {
+			date1 = formatter.parse(startingHour);
+			date2 = formatter.parse(finishingHour);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 	
 	public WorkersController() {}
