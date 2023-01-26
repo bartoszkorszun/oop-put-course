@@ -19,9 +19,11 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import estorage.main.entity.Equipment;
+import estorage.main.entity.Package;
 
 @Controller
 @RequestMapping("/equipment")
@@ -92,11 +94,13 @@ public class EquipmentController extends HttpServlet{
 	
 	public List<String> types;
 	public List<String> amount;
+	public List<Integer> ids;
 	
 	public void viewList() throws SQLException {
 		
 		types = new ArrayList<>();
 		amount = new ArrayList<>();
+		ids = new ArrayList<>();
 		
 		Connection connection = null;
 		Statement statement = null;
@@ -115,14 +119,50 @@ public class EquipmentController extends HttpServlet{
 			while(rs.next()) {
 				String sTypes = rs.getString("type");
 				String sAmount = rs.getString("amount");
+				int id = rs.getInt("id");
 				
 				types.add(sTypes);
 				amount.add(sAmount);
+				ids.add(id);
 			}
 			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@RequestMapping("/deleteEquipment/confirm/{eqid}")
+	public String confirmDeletePackage(@PathVariable int eqid, Model model) {
+		model.addAttribute("eqid", eqid);
+		return "confirm-delete-equipment";
+	}
+	
+	@RequestMapping("/deleteEquipment/{eqid}")
+	public String deletePackage(@PathVariable int eqid) {
+		
+		SessionFactory sFactory = new Configuration()
+				.configure("hibernate.cfg.xml")
+				.addAnnotatedClass(Equipment.class)
+				.buildSessionFactory();
+		
+		Session session = sFactory.getCurrentSession();
+		
+		try {
+			
+			session.beginTransaction();
+			
+			Equipment equipment = session.get(Equipment.class, eqid);
+			
+			if(equipment != null)
+				session.delete(equipment);
+			
+			session.getTransaction().commit();
+		
+		} finally {
+			sFactory.close();
+		}
+		
+		return "equipment-main";
 	}
 	
 	public EquipmentController() {}

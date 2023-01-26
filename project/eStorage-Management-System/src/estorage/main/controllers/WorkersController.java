@@ -303,5 +303,40 @@ public class WorkersController extends HttpServlet{
 		}
 	}
 	
+	@RequestMapping("/deleteEmployee/confirm/{deid}")
+	public String confirmDeleteEmployee(@PathVariable int deid, Model model) {
+		model.addAttribute("deid", deid);
+		return "confirm-delete-employee";
+	}
+	
+	@RequestMapping("/deleteEmployee/{deid}")
+	public String deleteEmployee(@PathVariable int deid) {
+		
+		SessionFactory sFactory = new Configuration()
+				.configure("hibernate.cfg.xml")
+				.addAnnotatedClass(Employee.class)
+				.addAnnotatedClass(WorkingHours.class)
+				.buildSessionFactory();
+		
+		Session session = sFactory.getCurrentSession();
+		
+		try {
+			
+			session.beginTransaction();
+			
+			Employee dEmployee = session.get(Employee.class, deid);
+			
+			if(dEmployee != null)
+				session.delete(dEmployee);
+			
+			session.getTransaction().commit();
+		
+		} finally {
+			sFactory.close();
+		}
+		
+		return "workers-main";
+	}
+	
 	public WorkersController() {}
 }

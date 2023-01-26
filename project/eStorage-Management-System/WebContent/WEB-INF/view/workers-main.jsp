@@ -32,12 +32,14 @@
 				+ "</td><td style=\"width: 100px\">" + dLst.get(i)
 				+ "</td><td style=\"width: 100px\">" + pLst.get(i)
 				+ "</td><td style=\"width: 100px\">" + "<a href=\"workingHours/" + eLst.get(i) + "\">Working hours</a>"
+				+ "</td><td style=\"width: 100px\">" + "<a href=\"deleteEmployee/confirm/" + eLst.get(i) + "\">Delete</a>"
 				+ "</td></tr>");
 			}else{
 				out.println("<tr><td style=\"width: 200px\">" + nLst.get(i) 
 				+ "</td><td style=\"width: 100px\">" + dLst.get(i)
 				+ "</td><td style=\"width: 100px\">" + pLst.get(i)
 				+ "</td><td style=\"width: 100px\">" + "<a href=\"workingHours/" + eLst.get(i) + "\">Working hours</a>"
+				+ "</td><td style=\"width: 100px\">" + "<a href=\"deleteEmployee/confirm" + eLst.get(i) + "\">Delete</a>"
 				+ "</td></tr>");
 			}
 			out.println("</table>");

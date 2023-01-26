@@ -21,6 +21,7 @@
 		eController.viewList();
 		java.util.List<String> tLst = eController.types;
 		java.util.List<String> aLst = eController.amount;
+		java.util.List<Integer> ids = eController.ids;
 		%>
 		<%
 		for (int i=tLst.size()-1; i>=0; i--){
@@ -29,10 +30,12 @@
 				out.println("<tr><th style=\"width: 200px\">Type</th><th style=\"width: 100px\">Amount</th></tr>");
 				out.println("<tr><td style=\"width: 200px\">" + tLst.get(i) 
 				+ "</td><td style=\"width: 100px\">" + aLst.get(i)
+				+ "</td><td style=\"width: 100px\">" + "<a href=\"deleteEquipment/confirm/" + ids.get(i) + "\">Delete</a>"
 				+ "</td></tr>");
 			}else{
 				out.println("<tr><td style=\"width: 200px\">" + tLst.get(i) 
 				+ "</td><td style=\"width: 100px\">" + aLst.get(i)
+				+ "</td><td style=\"width: 100px\">" + "<a href=\"deleteEquipment/confirm/" + ids.get(i) + "\">Delete</a>"
 				+ "</td></tr>");
 			}
 			out.println("</table>");

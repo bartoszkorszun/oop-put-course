@@ -23,6 +23,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import estorage.main.entity.Package;
@@ -127,6 +128,7 @@ public class PackagesController extends HttpServlet {
 	public List<String> weights;
 	public List<String> datesOfEntry;
 	public List<String> datesOfDelivery;
+	public List<Integer> ids;
 	
 	public void viewList() throws SQLException {
 		
@@ -138,6 +140,7 @@ public class PackagesController extends HttpServlet {
 		weights = new ArrayList<>();
 		datesOfEntry = new ArrayList<>();
 		datesOfDelivery = new ArrayList<>();
+		ids = new ArrayList<>();
 		
 		Connection connection = null;
 		Statement statement = null;
@@ -164,6 +167,7 @@ public class PackagesController extends HttpServlet {
 				String weight = rs.getString("weight");
 				String dateOfEntry = formatter.format(rs.getDate("date_of_entry"));
 				String dateOfDelivery = formatter.format(rs.getDate("date_of_delivery"));
+				int id = rs.getInt("id");
 			
 				trackingNumbers.add(trackingNumber);
 				statuses.add(status);
@@ -173,11 +177,46 @@ public class PackagesController extends HttpServlet {
 				weights.add(weight);
 				datesOfEntry.add(dateOfEntry);
 				datesOfDelivery.add(dateOfDelivery);
+				ids.add(id);
 			}
 			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@RequestMapping("/deletePackage/confirm/{pid}")
+	public String confirmDeletePackage(@PathVariable int pid, Model model) {
+		model.addAttribute("pid", pid);
+		return "confirm-delete-package";
+	}
+	
+	@RequestMapping("/deletePackage/{pid}")
+	public String deletePackage(@PathVariable int pid) {
+		
+		SessionFactory sFactory = new Configuration()
+				.configure("hibernate.cfg.xml")
+				.addAnnotatedClass(Package.class)
+				.buildSessionFactory();
+		
+		Session session = sFactory.getCurrentSession();
+		
+		try {
+			
+			session.beginTransaction();
+			
+			Package myPackage = session.get(Package.class, pid);
+			
+			if(myPackage != null)
+				session.delete(myPackage);
+			
+			session.getTransaction().commit();
+		
+		} finally {
+			sFactory.close();
+		}
+		
+		return "packages-main";
 	}
 	
 	public PackagesController() {}

@@ -35,7 +35,7 @@ public class WorkingHours {
 	@Column(name = "sum")
 	private int sum;
 	
-	@OneToOne(mappedBy = "workingHours", cascade = {CascadeType.ALL})
+	@OneToOne(mappedBy = "workingHours", cascade = CascadeType.ALL)
 	private Employee employee;
 
 	public WorkingHours() {

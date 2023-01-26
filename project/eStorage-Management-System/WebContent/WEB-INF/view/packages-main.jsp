@@ -27,6 +27,7 @@
 		java.util.List<String> weLst = pController.weights;
 		java.util.List<String> doeLst = pController.datesOfEntry;
 		java.util.List<String> dodLst = pController.datesOfDelivery;
+		java.util.List<Integer> ids = pController.ids;
 		%>
 		<%
 		for (int i=tnLst.size()-1; i>=0; i--){
@@ -41,6 +42,7 @@
 				+ "</td><td style=\"width: 100px\">" + weLst.get(i)
 				+ "</td><td style=\"width: 100px\">" + doeLst.get(i)
 				+ "</td><td style=\"width: 100px\">" + dodLst.get(i)
+				+ "</td><td style=\"width: 100px\">" + "<a href=\"deletePackage/confirm/" + ids.get(i) + "\">Delete</a>"
 				+ "</td></tr>");
 			}else{
 				out.println("<tr><td style=\"width: 100px\">" + tnLst.get(i) 
@@ -51,6 +53,7 @@
 				+ "</td><td style=\"width: 100px\">" + weLst.get(i)
 				+ "</td><td style=\"width: 100px\">" + doeLst.get(i)
 				+ "</td><td style=\"width: 100px\">" + dodLst.get(i)
+				+ "</td><td style=\"width: 100px\">" + "<a href=\"deletePackage/confirm/" + ids.get(i) + "\">Delete</a>"
 				+ "</td></tr>");
 			}
 			out.println("</table>");
