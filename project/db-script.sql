@@ -16,6 +16,7 @@ CREATE TABLE `working_hours` (
   `starting_hour` TIME,
   `finishing_hour` TIME,
   `sum` int(11) DEFAULT NULL,
+  `employee_id` int(11),
   PRIMARY KEY (`id`)
   ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
