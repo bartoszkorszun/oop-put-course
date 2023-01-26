@@ -22,9 +22,8 @@
 		java.util.List<String> nLst = wController.employeesNames;
 		java.util.List<String> dLst = wController.employeesDates;
 		java.util.List<String> pLst = wController.employeesPositions;
-		java.util.List<String> whLst = wController.employeesWorkingHours;
-		%>
-		<%
+		java.util.List<String> eLst = wController.employeesIds;
+	
 		for (int i=nLst.size()-1; i>=0; i--){
 			out.println("<table border=\"1\">");
 			if(i==nLst.size()-1){
@@ -32,13 +31,13 @@
 				out.println("<tr><td style=\"width: 200px\">" + nLst.get(i) 
 				+ "</td><td style=\"width: 100px\">" + dLst.get(i)
 				+ "</td><td style=\"width: 100px\">" + pLst.get(i)
-				+ "</td><td style=\"width: 100px\">" + "<a href=\"workingHours/" + whLst.get(i) + "\">Working hours</a>"
+				+ "</td><td style=\"width: 100px\">" + "<a href=\"workingHours/" + eLst.get(i) + "\">Working hours</a>"
 				+ "</td></tr>");
 			}else{
 				out.println("<tr><td style=\"width: 200px\">" + nLst.get(i) 
 				+ "</td><td style=\"width: 100px\">" + dLst.get(i)
 				+ "</td><td style=\"width: 100px\">" + pLst.get(i)
-				+ "</td><td style=\"width: 100px\">" + "<a href=\"workingHours/" + whLst.get(i) + "\">Working hours</a>"
+				+ "</td><td style=\"width: 100px\">" + "<a href=\"workingHours/" + eLst.get(i) + "\">Working hours</a>"
 				+ "</td></tr>");
 			}
 			out.println("</table>");

@@ -10,8 +10,8 @@
 		
 		<h2>Working Hours</h2>
 		
-		<form action="submitHours">
-		
+		<form action="http://localhost:8080/eStorage-Management-System/workers/submitHours">
+
 			<input type="date" name="date">
 			<br><br>
 			<input type="time" name="startingHour">

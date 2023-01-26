@@ -2,11 +2,13 @@ package estorage.main.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,6 +19,9 @@ public class WorkingHours {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
+	
+	@Column(name = "employee_id")
+	private int employeeId;
 	
 	@Column(name = "date")
 	private Date date;
@@ -29,16 +34,21 @@ public class WorkingHours {
 	
 	@Column(name = "sum")
 	private int sum;
+	
+	@OneToOne(mappedBy = "workingHours", cascade = {CascadeType.ALL})
+	private Employee employee;
 
 	public WorkingHours() {
 		
 	}
 	
-	public WorkingHours(Date date, 
+	public WorkingHours(int empoyeeId,
+			Date date, 
 			Date startingHour, 
 			Date finishingHour, 
 			int sum) {
 		
+		this.employeeId = empoyeeId;
 		this.date = date;
 		this.startingHour = startingHour;
 		this.finishingHour = finishingHour;
