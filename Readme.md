@@ -1,1 +1,3 @@
-Numer albumu 154030
+#oop-put-course
+
+The repo created for object oriented programming classes
